@@ -37,5 +37,5 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'discount', 'image1', 'image2','category', 'timestamp']
+        fields = ['name', 'description', 'price', 'discount', 'image1', 'image2','image3', 'category', 'timestamp']
 
