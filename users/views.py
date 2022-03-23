@@ -35,3 +35,4 @@ class LogoutView(APIView):
 class ProductView(generics.ListCreateAPIView):
     queryset = Product.objects.order_by('-timestamp')
     serializer_class = ProductSerializer
+    permission_classes = (IsAuthenticated,)

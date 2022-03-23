@@ -35,7 +35,12 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    category = serializers.SerializerMethodField()
     class Meta:
         model = Product
         fields = ['name', 'description', 'price', 'discount', 'image1', 'image2','image3', 'category', 'timestamp']
+
+    # def get_category(self, Product):
+
+
 
