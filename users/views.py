@@ -5,8 +5,8 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import RegistrationSerializer
-
+from .serializers import RegistrationSerializer, ProductSerializer
+from .models import Product
 
 
 
@@ -30,3 +30,8 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_200_OK)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProductView(generics.ListCreateAPIView):
+    queryset = Product.objects.order_by('-timestamp')
+    serializer_class = ProductSerializer

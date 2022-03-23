@@ -1,6 +1,7 @@
 from rest_framework import serializers,  viewsets
 from django.contrib.auth.models import User
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from .models import Product 
 
 class RegistrationSerializer(serializers.ModelSerializer):
     
@@ -31,4 +32,10 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
         return user
 
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'price', 'discount', 'image1', 'image2','category', 'timestamp']
 
