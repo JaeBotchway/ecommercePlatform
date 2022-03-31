@@ -10,12 +10,11 @@ from .models import Product
 
 
 
+
 # Create your views here.
 
 class CreateUser(generics.CreateAPIView):
     serializer_class = RegistrationSerializer
-
-
 
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
@@ -23,7 +22,7 @@ class LogoutView(APIView):
     def post(self, request):
         try:
             refresh_token = request.data["refresh_token"]
-            print(refresh_token)
+            # print(refresh_token)
             token = RefreshToken(refresh_token)
             token.blacklist()
 
@@ -36,3 +35,13 @@ class ProductView(generics.ListCreateAPIView):
     queryset = Product.objects.order_by('-timestamp')
     serializer_class = ProductSerializer
     permission_classes = (IsAuthenticated,)
+    
+    
+class DetailProductView(generics.RetrieveUpdateAPIView):
+    queryset = Product.objects.all()
+    model = Product
+    serializer_class = ProductSerializer
+    permission_classes = (IsAuthenticated,)
+
+
+

@@ -1,4 +1,4 @@
-from rest_framework import serializers,  viewsets
+from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import Product 
@@ -24,23 +24,22 @@ class RegistrationSerializer(serializers.ModelSerializer):
             email = validated_data['email'],
             first_name = validated_data['first_name'],
             last_name = validated_data['last_name'],
-
         )    
-
         user.set_password(validated_data['password1'])
         user.save()
 
         return user
+    
+
+    
+
 
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = serializers.SerializerMethodField()
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'discount', 'image1', 'image2','image3', 'category', 'timestamp']
-
-    # def get_category(self, Product):
-
+        fields = ['id','name', 'description', 'price', 'discount', 'image1', 'image2','image3', 'category', 'timestamp']
+        ordering = ('-timestamp')
 
 
